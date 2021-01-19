@@ -23,6 +23,11 @@ def add_todo(request):
     return redirect(test)
 
 
+def delete_todo(request, id):
+    todo = ToDo.objects.get(id=id)
+    todo.delete()
+    return redirect(test)
+
 def add_book(request):
     form = request.POST
     title = form['book_title']
@@ -34,6 +39,6 @@ def add_book(request):
     year = form['book_year']
     book = BookShop(title = title,subtitle = subtitle,description = description,price = price,genre = genre,author = author,year = year)
     book.save()
-    return redirect(book)
+    return redirect(second)
 
 
