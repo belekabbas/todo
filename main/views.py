@@ -57,3 +57,26 @@ def add_book(request):
     return redirect(second)
 
 
+def delete_book(request, id):
+    book = BookShop.objects.get(id=id)
+    book.delete()
+    return redirect(second)
+
+
+def mark_book(request, id):
+    book = BookShop.objects.get(id=id)
+    book.is_favorites = True
+    book.save()
+    return redirect(second)
+
+
+def unmark_book(request, id):
+    book = BookShop.objects.get(id=id)
+    book.is_favorites = False
+    book.save()
+    return redirect(second)
+
+
+def books_detail(request, id):
+    book = BookShop.objects.get(id=id)
+    return render(request, "books_detail.html", {"book": book})
